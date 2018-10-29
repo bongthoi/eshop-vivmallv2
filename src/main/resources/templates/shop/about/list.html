@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+	
+	<!-- page wapper-->
+	<div class="columns-container">
+	    <div class="container" id="columns">
+	        <!-- breadcrumb -->
+	        <div class="breadcrumb clearfix">
+	            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+	            <span class="navigation-pipe">&nbsp;</span>
+	            <span class="navigation_page" th:text="#{about.title}">About Us</span>
+	        </div>
+	        <!-- ./breadcrumb -->
+	        <!-- row -->
+	        <div class="row">
+	            <!-- Center colunm-->
+	            <div class="center_column col-xs-12 col-sm-12" id="center_column">
+	                <!-- page heading-->
+	                <h2 class="page-heading">
+	                    <span class="page-heading-title2"	th:utext="${about.title}">About Us</span>
+	                </h2>
+	                <!-- Content page -->
+	                <div class="content-text clearfix">
+	                    <p th:utext="${about.content}">Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consecvtetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel.</p>
+	                </div>
+	                <!-- ./Content page -->
+	            </div>
+	            <!-- ./ Center colunm -->
+	        </div>
+	        <!-- ./row-->
+	    </div>
+	</div>
+	<!-- ./page wapper-->
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/layout :: head"></head>
+<body class="hold-transition skin-red sidebar-mini">
+<div class="wrapper" style="height: auto;">
+    <header th:replace="admin/fragments/layout :: header"></header>
+
+  	 <aside th:replace="admin/fragments/layout :: sidebar" class="main-sidebar"></aside>
+  	 
+  	  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Config payment
+        <small>List Items</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="admin"><i class="fa fa-dashboard" ></i> Home</a></li>
+        <li class="active">Payment</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box box-primary">
+      			 		  <!-- /* Handle the flash message */-->
+									    <th:block th:if="${message != null}">
+									        <!-- /* The message code is returned from the @Controller */ -->
+									        <div th:replace="admin/fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+									    </th:block>
+									      <!-- /* end Handle the flash message */-->
+        <div class="box-header with-border row">
+        	<form method="get" novalidate="novalidate" th:action="@{admin/payment}">
+		        <div class="col-md-3">
+		        	<div class="input-group"> <input class="form-control" name="name"> <span class="input-group-btn"> 
+		        	<button class="btn btn-success" type="submit"><i class="fa  fa-search"></i></button> </span> </div>
+		        </div>
+        	</form>
+        </div> 
+        <div class="box-body tb-payment">
+		      <div class="mailbox-controls">
+         
+         		<div class="btn-group">
+                  <a  class="btn btn-primary btn-sm" th:href="@{admin/payment/add}"><i class="fa fa-plus"></i></a>
+                </div>
+                 <div class="btn-group">
+                  <button type="button" id="do_active_payment" class="btn btn-success btn-sm"><i class="fa  fa-check"></i></button>
+                </div>      
+            	 <div class="btn-group">
+                  <button type="button" id="do_disabled_payment" class="btn btn-warning btn-sm"><i class="fa  fa-ban"></i></button>
+                </div>  
+                 <div class="btn-group">
+                  <button type="button" id="do_delete_payment" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                </div> 
+ 
+              </div>
+            <form id="frm-table-payment" novalidate="novalidate" method="post" style=" overflow-y: auto;">
+           	<table class="table table-hover table-bordered">
+                <thead><tr>
+               <th class="text-center" style="vertical-align: middle"  width="55">
+               	       <!-- Check all button -->
+		                <button type="button" class="btn btn-default btn-sm checkbox-toggle66"><i class="fa fa-square-o"></i>
+		                </button>
+               </th>
+               <th class="text-center" style="vertical-align: middle"  width="55">Edit</th>
+               		  <th class="text-center" style="vertical-align: middle;min-width:200px;" >Name</th>
+               		  <th class="text-center" style="vertical-align: middle" width="30">Icon</th>
+               		    <th class="text-center" style="vertical-align: middle">Description</th>
+               		    <th class="text-center" style="vertical-align: middle"  width="100">Acc Name</th>
+               		    <th class="text-center" style="vertical-align: middle" width="30">Acc Pass</th>
+               		    <th class="text-center" style="vertical-align: middle">Url</th>
+               		    <th class="text-center" style="vertical-align: middle"  width="100">merchant_site_code</th>
+               		    <th class="text-center" style="vertical-align: middle" width="30">secure_pass</th>
+               		    <th class="text-center" style="vertical-align: middle">return_url</th>
+               		    <th class="text-center" style="vertical-align: middle"  width="100">return_cancel</th>
+               		    <th class="text-center" style="vertical-align: middle" width="30">receiver</th>
+                   		<th class="text-center" style="vertical-align: middle"  width="100">Status</th>
+                </tr>
+              <thead>
+              <tbody>
+              		<tr  th:each="payment:${payments}">
+              			<td class="text-center" style="vertical-align: middle"><input type="checkbox"  th:value="${payment.id}" name="arr_id">  </td>
+              					<td class="text-center" style="vertical-align: middle"><a th:href="@{'admin/payment/edit/' + ${payment.id}}"><i class="fa fa-edit"></i></a></td>
+              			<td>
+              				<span th:if="${#strings.isEmpty(payment.img)}" th:text="${payment.name}"></span>
+              				<th:block  th:if="${!#strings.isEmpty(payment.img)}">
+              					<a target="_blank" th:href="@{'upload/payment/' + ${payment.img}}"><i class="fa  fa-picture-o"></i> <span th:text="${payment.name}"></span></a>
+              				</th:block>
+              			</td>
+              			<td style="max-width:70px;max-height:50px;"><img style="max-width:70px;max-height:30px;" th:src="@{'upload/payment/' + ${payment.img}}"/></td>
+              			<td style="min-width:400px;"  th:text="${payment.description}"></td>
+              			<td style="min-width:400px;"	th:text="${payment.account_name}"></td>
+              			<td  th:text="${payment.account_pass}"></td>
+              			<td  th:text="${payment.url}"></td>
+              			<td  th:text="${payment.merchant_site_code}"></td>
+              			<td  th:text="${payment.secure_pass}"></td>
+              			<td  th:text="${payment.return_url}"></td>
+              			<td  th:text="${payment.return_cancel}"></td>
+              			<td  th:text="${payment.receiver}"></td>
+              			<td class="text-center" style="vertical-align: middle">
+              				<span th:replace="admin/fragments/status :: htmlstatus(status=${payment.status})"></span>
+              			</td>
+              			
+              		</tr>
+              </tbody>
+              </table>
+            
+            </form>  
+           
+           
+            
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+        
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+ <script src="js/payment/main.js"></script> 	 
+
+    <footer th:replace="admin/fragments/layout :: footer"></footer>
+  <!-- /wapper -->
+  </div>  
+</body>
+</html>

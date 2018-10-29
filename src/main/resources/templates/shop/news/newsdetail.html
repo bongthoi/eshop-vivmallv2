@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2 category-page">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+	
+	<!-- page wapper-->
+	<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page" th:text="#{newsdetail.title}">Tin tức</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <div class="column col-xs-12 col-sm-3" id="left_column">
+                <!-- Blog category -->
+                <div class="block left-module">
+                    <p class="title_block">Danh mục</p>
+                    <div class="block_content">
+                        <!-- layered -->
+                        <div class="layered layered-category">
+                            <div class="layered-content">
+                                <ul class="tree-menu">
+                                    <li th:each="ncategory:${newscategories}" th:class="${ncategory.id==active}? 'active':''">
+                                    	<span></span><a th:href="@{newsbycateid/{id}/{seourl}(id=${ncategory.id},seourl=${ncategory.friendlyurl})}"><span th:text="${ncategory.name}"></span></a>
+                                   	</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- ./layered -->
+                    </div>
+                </div>
+                <!-- ./blog category  -->
+            </div>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <h1 class="page-heading">
+                    <span class="page-heading-title2" th:text="${news.title}">Joanne Cheung</span>
+                </h1>
+                <article class="entry-detail">
+                    <div class="entry-meta-data">
+                        <span class="date"><i class="fa fa-calendar"></i> <span	th:text="${news.create_date}">2017-08-05 07:01:49</span></span>
+                    </div>
+                    <div class="content-text clearfix" th:utext="${news.content}">
+                    </div>
+                </article>
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+	<!-- ./page wapper-->
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2 product-page">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page"><span	th:text="#{contact.title}">Contact</span></span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span th:text="#{contact.title}" class="page-heading-title2">Contact Us</span>
+        </h2>
+        <!-- ../page heading-->
+        <div id="contact" class="page-content page-contact">
+        	<div class="row">
+        		<p class="text-center">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.566232218375!2d106.6383563148007!3d10.767874992327334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752e99d3583e7d%3A0x7c8000a7b87217c9!2zNTYgLSA1NkEgSMOyYSBCw6xuaCwgcGjGsOG7nW5nIDUsIFF14bqtbiAxMSwgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1sen!2s!4v1510633878310" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</p>
+        	</div>
+            <div id="message-box-conact"></div>
+            <div class="row">
+            	<!-- /* Handle the flash message */-->
+				<th:block th:if="${message != null}">
+					<!-- /* The message code is returned from the @Controller */ -->
+					<div
+						th:replace="shop/fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+				</th:block>
+				<!-- /* end Handle the flash message */-->
+                <div class="col-sm-6">
+                	<form class="bs-example bs-example-form" role="form"
+							action="#" th:action="@{~/contact/save}"
+							th:object="${contact}" method="POST" novalidate="novalidate">
+							
+							<input type="hidden" th:field="*{id}">
+		                    <h3 class="page-subheading"><span	th:text="#{contact.form}">CONTACT FORM</span></h3>
+		                    <div class="contact-form-box">
+		                        <div class="form-selector">
+		                        	<label><span	th:text="#{contact.form.subject}">Subject</span></label>
+									<input type="text" class="form-control"
+												th:placeholder="#{contact.form.subject.placeholder}"
+												th:field="*{subject}" th:errorclass="field-error">
+									<em th:if="${#fields.hasErrors('subject')}"
+												th:errors="*{subject}" style="color: red;"></em>
+		                        </div>
+		                        <div class="form-selector">
+		                            <label><span	th:text="#{contact.form.email}">Email</span></label>
+		                            <input type="text" class="form-control"
+											th:placeholder="#{contact.form.email.placeholder}"
+											th:field="*{email}" th:errorclass="field-error">
+									<em th:if="${#fields.hasErrors('email')}"
+												th:errors="*{email}" style="color: red;"></em>
+		                        </div>
+		                        <div class="form-selector">
+		                            <label><span	th:text="#{contact.form.name}">Name</span></label>
+		                            <input type="text" class="form-control"
+													th:placeholder="#{contact.form.name.placeholder}"
+													th:field="*{name}" th:errorclass="field-error">
+									<em th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+												style="color: red;"></em>
+		                        </div>
+		                        <div class="form-selector">
+		                            <label><span	th:text="#{contact.form.phone}">Phone</span></label>
+		                            <input type="text" class=" form-control"
+											th:placeholder="#{contact.form.phone.placeholder}"
+											th:field="*{phone}">
+		                        </div>
+		                        <div class="form-selector">
+		                            <label><span	th:text="#{contact.form.content}">Message</span></label>
+		                            <textarea rows="3" cols="65" class="form-control"
+												id="Message" name="content" th:field="*{content}"
+												th:placeholder="#{contact.form.content.placeholder}"> </textarea>
+		                        </div>
+		                        <div class="control-group form-group">
+									<div class="controls">
+										<script	th:src="@{'https://www.google.com/recaptcha/api.js?hl='+${#locale.language}}" src='https://www.google.com/recaptcha/api.js?hl='></script>
+										<div class="g-recaptcha" th:attr="data-sitekey=${sitekey}"></div>
+									</div>
+								</div>
+		                        <div class="form-selector">
+		                            <button type="submit" id="btn-send-contact" class="btn"><span th:text="#{contact.form.button.send}">Send</span></button>
+		                        </div>
+		                    </div>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-sm-6" id="contact_form_map">
+                    <h3 class="page-subheading"><span	th:text="#{contact.infomation}">Information</span></h3>
+                    <ul class="store_info">
+                        <li><i class="fa fa-home"></i><span th:text="#{layout.footer.company.value}"></span></li>
+                        <li><i class="fa fa-map-marker"></i><span th:text="#{layout.footer.address.value}">+ 021.343.7575</span></li>
+                        <li><i class="fa fa-phone"></i><span th:text="#{layout.footer.phone.value}">+ 020.566.6666</span></li>
+                        <li><i class="fa fa-envelope"></i><span th:text="#{layout.footer.email.value}"></span></li>
+                    </ul>                
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

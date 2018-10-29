@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span th:text="#{layout.header.menu.home}"></span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page"><span	th:text="#{user.register.title}">Authentication</span></span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2"><span	th:text="#{user.register.form}">Authentication</span></span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content">
+            <div class="col-md-12">
+				<form method="post" id="frm_user_edit" novalidate="novalidate"
+					th:action="@{user/save}" th:object="${user}">
+					<input type="hidden" class="form-control" th:field="*{persisted}">
+					<div class="col-md-12">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<!-- <h3 class="box-title">User info</h3> -->
+								<!-- /* Handle the flash message */-->
+								<th:block th:if="${message != null}">
+									<!-- /* The message code is returned from the @Controller */ -->
+									<div
+										th:replace="shop/fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+								</th:block>
+								<!-- /* end Handle the flash message */-->
+							</div>
+							<div class="box-body">
+								<div class="alert alert-danger alert-dismissible" role="alert"
+									th:if="${#fields.hasGlobalErrors()}">
+									<button type="button" class="close" data-dismiss="alert"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<ul>
+										<li th:each="err : ${#fields.globalErrors()}"><label
+											class="control-label" th:text="${err}"></label></li>
+									</ul>
+
+								</div>
+								<div class="col-md-5" style="text-align:center;">
+									<img src="shop/assets/images/Registration.png">
+								</div>
+								<div class="col-md-7">
+									<div class="form-group">
+										<label><span th:text="#{register.form.username}">Email</span>(<span style="color:red;">Email*</span>)</label> <input type="text"
+											class="form-control" th:field="*{username}" 
+											th:placeholder="#{register.form.username.placeholder}"
+											th:errorclass="field-error" th:readonly="${user.persisted}">
+										<label th:if="${#fields.hasErrors('username')}"
+											th:errors="*{username}" class="error"></label>
+									</div>
+									<div class="form-group" th:if="${user.isNew()}">
+										<label><span th:text="#{register.form.password}">Password</span>(<span style="color:red;">*</span>)</label> <input type="password"
+											class="form-control" th:field="*{password}" 
+											th:placeholder="#{register.form.password.placeholder}"
+											th:errorclass="field-error"> <label
+											th:if="${#fields.hasErrors('password')}"
+											th:errors="*{password}" class="error"></label>
+									</div>
+									<div class="form-group" th:if="${user.isNew()}">
+										<label><span  th:text="#{register.form.repassword}">RePassword</span>(<span style="color:red;">*</span>)</label> <input type="password"
+											class="form-control" th:field="*{repassword}" 
+											th:placeholder="#{register.form.repassword.placeholder}" 
+											th:errorclass="field-error"> <label
+											th:if="${#fields.hasErrors('repassword')}"
+											th:errors="*{repassword}" class="error"></label>
+									</div>
+									<input type="hidden" th:if="!${user.isNew()}" name="password"
+										value='123456'> <input type="hidden"
+										th:if="!${user.isNew()}" name="repassword" value='123456'>
+									<div class="form-group">
+										<label><span  th:text="#{register.form.firstname}">First Name</span>(<span style="color:red;">*</span>)</label> <input type="text"
+											class="form-control" th:field="*{FirstName}" 
+											th:placeholder="#{register.form.firstname.placeholder}"
+											th:errorclass="field-error"> <label
+											th:if="${#fields.hasErrors('FirstName')}"
+											th:errors="*{FirstName}" class="error"></label>
+									</div>
+									<div class="form-group">
+										<label><span  th:text="#{register.form.last}">Last Name</span>(<span style="color:red;">*</span>)</label> <input type="text"
+											class="form-control" th:field="*{LastName}" 
+											th:placeholder="#{register.form.last.placeholder}"
+											th:errorclass="field-error"> <label
+											th:if="${#fields.hasErrors('LastName')}"
+											th:errors="*{LastName}" class="error"></label>
+									</div>
+									<div class="form-group">
+										<label><span  th:text="#{register.form.address}">Address</span>(<span style="color:red;">*</span>)</label> <input type="text"
+											class="form-control" th:field="*{address}" 
+											th:placeholder="#{register.form.address.placeholder}" 
+											th:errorclass="field-error"> <label
+											th:if="${#fields.hasErrors('address')}"
+											th:errors="*{address}" class="error"></label>
+									</div>
+
+									<div class="form-group">
+										<label><span  th:text="#{register.form.phone}"> Phone</span>(<span style="color:red;">*</span>)</label> <input type="text" class="form-control"
+											th:field="*{phone}" 
+											th:placeholder="#{register.form.phone.placeholder}" 
+											th:errorclass="field-error"> <label
+											th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+											class="error"></label>
+									</div>
+
+									<div class="form-group">
+										<label><span  th:text="#{register.form.birthday}">Birthday</span>(<span style="color:red;">*</span>)</label>
+										<div class="input-group date">
+											<div class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</div>
+											<input type="text" class="form-control pull-right"
+												id="Birthday-datepicker" th:field="*{birthday}" 
+												th:placeholder="#{register.form.birthday.placeholder}" 
+												th:errorclass="field-error">
+										</div>
+										<!-- /.input group -->
+										<label th:if="${#fields.hasErrors('birthday')}"
+											th:errors="*{birthday}" class="error"></label>
+									</div>
+									<div class="control-group form-group">
+										<div class="controls">
+											
+											<script	th:src="@{'https://www.google.com/recaptcha/api.js?hl='+${#locale.language}}" src='https://www.google.com/recaptcha/api.js?hl='></script>
+
+											<div class="g-recaptcha" th:attr="data-sitekey=${sitekey}"></div>
+
+										</div>
+									</div>
+									<div class="col-md-6">
+										<button type="submit" class="btn btn-danger"><span  th:text="#{register.form.button.register}">Register</span></button>
+										
+									</div>
+									<div class="col-md-6">
+										<button type="reset" class="btn btn-primary"><span  th:text="#{register.form.button.reset}">Reset</span></button>
+									</div>
+								</div>
+							</div>
+							<div class="box-footer"></div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+
+
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+<!-- bootstrap datepicker -->
+	<script th:src="@{plugins/datepicker/bootstrap-datepicker.js}"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+	
+	<!-- page wapper-->
+	<div class="columns-container">
+	    <div class="container" id="columns">
+	        <!-- breadcrumb -->
+	        <div class="breadcrumb clearfix">
+	            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+	            <span class="navigation-pipe">&nbsp;</span>
+	            <span class="navigation_page" th:text="#{about.title}">About Us</span>
+	        </div>
+	        <!-- ./breadcrumb -->
+	        <!-- row -->
+	        <div class="row">
+	            <!-- Center colunm-->
+	            <div class="center_column col-xs-12 col-sm-12" id="center_column">
+	                <!-- page heading-->
+	                <table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>getServerName()</th>
+					        <th>getRequestURL()</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr>
+					        <td><span	th:text="${nameserver}"></span></td>
+					         <td><span th:text="${requesturl}"></span></td>
+					      <tr>
+					        
+					      </tr>
+					    </tbody>
+					  </table>
+	                <!-- ./Content page -->
+	            </div>
+	            <!-- ./ Center colunm -->
+	        </div>
+	        <!-- ./row-->
+	    </div>
+	</div>
+	<!-- ./page wapper-->
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

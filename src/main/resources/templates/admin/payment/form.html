@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/layout :: head"></head>
+<body class="hold-transition skin-red sidebar-mini">
+<div class="wrapper" style="height: auto;">
+    <header th:replace="admin/fragments/layout :: header"></header>
+  	 <aside th:replace="admin/fragments/layout :: sidebar" class="main-sidebar"></aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->    
+     <section class="content-header">
+      <h1>
+       Payment<small th:text="${h1}"> Add Item</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a th:href='@{admin}'><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a th:href='@{admin/payment}'> Payment</a></li>
+        <li class="active" th:text="${h1}">Add</li>
+      </ol>
+    </section>
+    
+    <!-- Main content -->
+    <section class="content">
+    	<div class="row">
+     	
+    		<form method="post"  novalidate="novalidate" th:action="@{admin/payment/save}" th:object="${payment}" id="frm_add">
+    			<input type="hidden" class="form-control"  th:field="*{persisted}" >
+    			
+    			<div class="col-md-9">
+    					<div class="box box-primary" >     
+    						<div class="box-header with-border">
+    							<h3 class="box-title">Payment config</h3>
+    								 		  <!-- /* Handle the flash message */-->
+									    <th:block th:if="${message != null}">
+									        <!-- /* The message code is returned from the @Controller */ -->
+									        <div th:replace="admin/fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+									    </th:block>
+									      <!-- /* end Handle the flash message */-->
+    						</div>    
+				            <div class="box-body">
+						            <div class="alert alert-danger alert-dismissible" role="alert" th:if="${#fields.hasGlobalErrors()}">
+									  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									  <ul>
+									  	<li th:each="err : ${#fields.globalErrors()}" ><label class="control-label" th:text="${err}" ></label></li>
+									  </ul>
+										
+									</div>
+						            <div class="col-md-12">
+						           		 <div class="form-group">
+						            			<input type="hidden" class="form-control"  th:field="*{id}">
+				               				</div>			
+						            
+						            	 <div class="form-group">
+						           						 <label >Name</label>
+						            					<input type="text" class="form-control"  th:field="*{name}" th:errorclass="field-error">
+				               								<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"  class="error"></label>
+				               				</div>		
+				               				 <div class="form-group">
+						           						 <label >Description</label>
+						           						 <textarea  class="form-control"  th:field="*{description}" th:errorclass="field-error">
+						           						 </textarea>
+				               				</div>
+				               				<div class="form-group">
+						           						 <label >Account Name</label>
+						            					<input type="text" class="form-control"  th:field="*{account_name}"  >
+				               				</div>
+				               				<div class="form-group">
+						           						 <label >account_pass</label>
+						           						 <textarea  class="form-control"  th:field="*{account_pass}" th:errorclass="field-error">
+						           						 </textarea>
+				               				</div>
+				               				<div class="form-group">
+						           						 <label >url</label>
+						           						 <textarea  class="form-control"  th:field="*{url}" th:errorclass="field-error">
+						           						 </textarea>
+				               				</div>
+				               				<div class="form-group">
+						           						 <label >merchant_site_code</label>
+						           						 <textarea  class="form-control"  th:field="*{merchant_site_code}" th:errorclass="field-error">
+						           						 </textarea>
+				               				</div>
+				               				<div class="form-group">
+						           						 <label >secure_pass</label>
+						           						 <textarea  class="form-control"  th:field="*{secure_pass}" th:errorclass="field-error">
+						           						 </textarea>
+				               				</div>
+				               				<div class="form-group">
+						           						 <label >return_url</label>
+						           						 <textarea  class="form-control"  th:field="*{return_url}" th:errorclass="field-error">
+						           						 </textarea>
+				               				</div>
+				               				<div class="form-group">
+						           						 <label >receiver</label>
+						           						 <textarea  class="form-control"  th:field="*{receiver}" th:errorclass="field-error">
+						           						 </textarea>
+				               				</div>
+						            </div>
+							</div>
+							 <div class="box-footer">
+							 	<a th:href='@{admin/payment}'>Go Back </a>
+								 	<button type="submit" class="btn btn-primary" id="save" >
+						                <i class="fa fa-save"></i> Save
+						      		</button>
+								 </div>
+				       </div>
+    			</div>
+    			<div class="col-md-3">
+						 <!-- Default box -->
+						 <div class="box box-primary">
+					        <div class="box-header with-border">
+							    <h3 class="box-title"><i class="fa fa-tag"></i>Icon[<span style="font-size:x-small;color:red;">Dimension:20x20,Size:60kb</span>]</h3>
+							    <div class="box-tools pull-right">
+						            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+		          				</div>
+					        </div> 
+					        <div class="box-body">
+					        		<div id="feature_iconimage_div">
+					        			<img class="img img-responsive" th:if="${!#strings.isEmpty(payment.img)} " th:src="@{'upload/payment/' +${payment.img}}">
+					        		</div>
+							    			<div class="form-group">
+							    					<input type="hidden"value="no_image.jpg"  th:field="*{img}" id="feature_iconimage_input">
+							    					<a href="javascript:void(0);" id="feature_iconimage_btn"> Set icon image</a>	
+							    			</div>
+					        </div>
+				        <!-- /.box-body -->
+				      </div>
+						 <!-- Default box -->
+			      <div class="box box-primary">
+			        <div class="box-header with-border">
+					    <h3 class="box-title"><i class="fa fa-tag"></i>Status</h3>
+					    <div class="box-tools pull-right">
+				            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				         
+          				</div>
+			        </div> 
+			        <div class="box-body" >
+			       		   <div class="form-group">
+				                <label>
+				                  <input type="radio" class="minimal"   th:field="*{status}" value="1" >
+				                   <span class='label label-success'>Active</span>
+				        		</label>
+				              </div>
+				             <div class="form-group">
+				                <label>
+				                  <input type="radio"class="minimal"   th:field="*{status}" value="0" >
+				                    <span class='label label-danger'>Disabled</span>
+				        		</label>
+				              </div>  
+			        </div>
+			        <!-- /.box-body -->
+			      </div>
+			      <!-- /.box -->      
+    			</div>
+    		</form>
+    	</div>
+    	
+    	
+	</section>
+    <!-- /.content -->
+  </div>
+	<input id="txtimage_iconpayment_feature" name="img" type="file" style="display:none" >	
+  <!-- /.content-wrapper -->
+<script src="js/payment/main.js"></script>
+  	
+    <footer th:replace="admin/fragments/layout :: footer"></footer>
+   <!-- /wapper --> 
+ </div>   
+</body>
+</html>

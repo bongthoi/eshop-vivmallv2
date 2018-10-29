@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- page wapper-->
+
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+           <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page"><span	th:text="#{checkout.title}">Checkout</span></span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2"><span	th:text="#{checkout.title}">Checkout</span></span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content checkout-page">
+            <div class="box-border">
+                <div class="row">
+	                    <div class="col-sm-6">
+		                    	<form th:action="@{order/payment}" method="POST" th:object="${orders}">
+									<input type="hidden" class="form-control" th:field="*{persisted}">
+									<input type="hidden" class="form-control" th:field="*{IsCheck}">
+									<input type="hidden" class="form-control" th:field="*{id}">
+		                    		
+		                    		<h3 class="checkout-sep"><span	th:text="#{checkout.billinginformation}">1. Billing Infomations</span></h3>
+						            <div class="box-border">
+						                <ul>
+						                    <li class="row">
+						                        <div class="col-sm-12">
+						                            <label for="first_name" class="required"><span th:text="#{checkout.form.name}">Há»� vÃ  tÃªn ngÆ°á»�i nháº­n: </span>(<span style="color:red;">*</span>)</label>
+						                            <input type="text" class="input form-control" th:field="*{Name}" th:errorclass="field-error" id="first_name"> 
+						                            <label th:if="${#fields.hasErrors('Name')}" th:errors="*{Name}"	class="error"></label>
+						                        </div><!--/ [col] -->
+						                        <div class="col-sm-12">
+						                            <label for="email" class="required"><span th:text="#{checkout.form.email}">Email: </span>(<span style="color:red;">*</span>)</label>
+						                            <input type="text" th:field="*{Email}" th:errorclass="field-error" class="input form-control" id="email">
+						                            <label	th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"	class="error"></label>
+						                        </div><!--/ [col] -->
+						                        <div class="col-sm-12">
+						                            <label for="phone" class="required"><span th:text="#{checkout.form.phone}">Ä�iá»‡n thoáº¡i di Ä‘á»™ng: </span>(<span style="color:red;">*</span>)</label>
+						                            <input type="text" class="input form-control" th:field="*{Phone}" th:errorclass="field-error" id="phone"> 
+						                            <label	th:if="${#fields.hasErrors('Phone')}" th:errors="*{Phone}"	class="error"></label>
+						                        </div><!--/ [col] -->
+						                        <div class="col-sm-12">
+						                            <label for="address" class="required"><span th:text="#{checkout.form.address}">Ä�á»‹a chá»‰:</span>(<span style="color:red;">*</span>)</label>
+						                            <textarea class="input form-control" rows="4" cols="40"	th:field="*{Address}" class="form-control" id="address"></textarea>
+						                        </div><!--/ [col] -->
+						                        <div class="col-sm-12">
+						                            <label for="note" class="required"><span th:text="#{checkout.form.note}">Note:</span></label>
+						                            <textarea class="input form-control" rows="6" cols="40"	th:field="*{Note}" class="form-control" id="note"></textarea>
+						                        </div><!--/ [col] -->
+						                    </li><!--/ .row -->
+						               	</ul>
+						            </div>
+						            <h3 class="checkout-sep"><span	th:text="#{checkout.shippingmethod}">2. Shipping Method</span></h3>
+						            <div class="box-border">
+						                <ul>
+						                    <li class="row">
+						                        <div class="col-sm-12">
+						                            <label  for="shippingmethod" class="required"><span th:text="#{checkout.form.deliverymethod}">Time:</span></label>
+						                            <select class="input form-control"	th:field="*{DeliveryMethod.id}" th:errorclass="field-error" id="shippingmethod">
+														<option value="1"><span	th:text="#{checkout.form.deliverymethod.button.select}">---Select---</span></option>
+														<option th:each="deliveryMethod : ${deliveryMethods}"
+															th:value="${deliveryMethod.id}"
+															th:selected="(${deliveryMethod.id} == *{DeliveryMethod.id})">
+														<span th:text="${deliveryMethod.name+'-'+#numbers.formatDecimal(deliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}"></span>
+														<span style="color:red;" th:text="#{cart.currency}"></span>
+														</option>
+													</select> 
+													<label th:if="${#fields.hasErrors('DeliveryMethod.id')}"	th:errors="*{DeliveryMethod.id}" class="error"></label>
+						                        </div><!--/ [col] -->
+						                    </li><!--/ .row -->
+						               	</ul>
+						            </div>
+						            <h3 class="checkout-sep"><span	th:text="#{checkout.paymentinformation}">3. Payment Information</span></h3>
+						            <div class="box-border">
+						                <ul>
+						                    <li class="row">
+						                        <div class="col-sm-12 pay-methods">
+						                            <div >
+														<label th:each="paymentMethod,iterStat : ${paymentMethods}">
+															<div class="item_pay">
+																<ul class="item_pay_link">
+																	<li><span class="w3-bar-item w3-button"
+																		th:text="${paymentMethod.name}">Thanh toÃ¡n khi nháº­n
+																			hÃ ng</span></li>
+																	<li><img class="pay_img"
+																		th:src="@{'~/upload/payment/'+${paymentMethod.img}}"
+																		alt=""></li>
+																	<li><input type="radio" th:field="*{PaymentMethod.id}"
+																		th:value="${paymentMethod.id}" name="options"
+																		th:onclick="|openmethods('${paymentMethod.id}')|" /></li>
+																</ul>
+															</div>
+														</label>
+													</div>
+													<div class="col-md-12 pay_info">
+														<div th:attr="id=${paymentMethod.id}" class="methods"
+															th:each="paymentMethod : ${paymentMethods}"
+															style="display: none">
+															<p th:text="${paymentMethod.description}"></p>
+														</div>
+													</div>
+						                        </div><!--/ [col] -->
+						                    </li><!--/ .row -->
+						               	</ul>
+						            </div>
+						            <div class="box-border">
+						                <ul>
+						                    <li class="row">
+						                        <div class="col-sm-12">
+						                            <button type="submit" class="button" th:text="#{checkout.form.button.payment}">THANH TOÃ�N</button>
+						                        </div><!--/ [col] -->
+						                    </li><!--/ .row -->
+						               	</ul>
+						            </div>
+						            
+					            </form>
+	                    </div>
+                    <div class="col-sm-6">
+                    	<h3 class="checkout-sep"><span	th:text="#{checkout.orderreviews}">4.Order Review</span></h3>
+                    	<table class="table table-bordered table-responsive cart_summary">
+		                    <thead>
+		                        <tr>
+		                            <!-- <th class="cart_product"><span	th:text="#{checkout.orderreviews.image}">Picture</span></th> -->
+		                            <th><span	th:text="#{checkout.orderreviews.productname}">Product name</span></th>
+		                            <th><span	th:text="#{checkout.orderreviews.unitprice}">Unit price</span></th>
+		                            <th><span	th:text="#{checkout.orderreviews.qty}">Qty</span></th>
+		                            <th style="width:100px;align:center;"><span	th:text="#{checkout.orderreviews.discount}">Discount</span></th>
+		                            <th><span	th:text="#{checkout.orderreviews.total}">Total</span></th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                        <tr th:each="product,iterProduct:${@cart.items}">
+		                            <!-- <td class="cart_product">
+		                                <a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><img th:src="@{'~/upload/product/' +${product.FeatureImage}}" alt="Product"></a>
+		                            </td> -->
+		                            <td class="cart_description">
+		                                <p class="product-name"><a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><span th:text="${product.ProductName}">Product name</span></a></p>
+		                            </td>
+		                            <td class="price"><span th:text="${#numbers.formatDecimal(product.SellPrice, 0, 'DEFAULT', 0, 'DEFAULT')}">61,19</span></td>
+		                             <td class="product-quality"><span th:text="${product.quantity}">61,19</span></td>
+		                             <td style="width:100px;align:center;"><span th:text="100-${#numbers.formatDecimal((product.SellPrice*100)/product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+'%'">61,19</span></td>
+		                            <td class="price">
+		                                <span th:text="${#numbers.formatDecimal(product.SellPrice*product.quantity, 0, 'DEFAULT', 0, 'DEFAULT')}">61,19</span>
+		                            </td>
+		                        </tr>
+		                    </tbody>
+		                    <!-- <tfoot>
+		                        <tr>
+		                            <td colspan="2" rowspan="2"></td>
+		                            <td colspan="2"><span	th:text="#{checkout.orderreviews.shippingfee}">Shipping Fee</span></td>
+		                            <td colspan="2" th:text="${#numbers.formatDecimal(orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}">0.0</td>
+		                        </tr>
+		                        <tr>
+		                            <td colspan="2"><strong><span	th:text="#{checkout.orderreviews.total}">Total</span></strong></td>
+		                            <td colspan="2"><strong th:text="${#numbers.formatDecimal(@cart.Amount+orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}">500.000</strong>(<span th:text="#{cart.currency}"></span>)</td>
+		                            <td colspan="2"><strong th:text="${@cart.Amount+orders.DeliveryMethod.fee}">500.000</strong>(<span th:text="#{cart.currency}"></span>)</td>
+		                        </tr>
+		                    </tfoot>    -->
+		                    <tfoot>
+	                          <tr>
+	                              <td colspan="2" rowspan="2"></td>
+	                              <td colspan="2"><span th:text="#{checkout.orderreviews.shippingfee}">Shipping Fee</span></td>
+	                              <td colspan="2"><span id="shippingmethodfee" th:text="${#numbers.formatDecimal(orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}">0.0</span></td>
+	                          </tr>
+	                          <tr>
+	                              <td colspan="2"><strong><span th:text="#{checkout.orderreviews.total}">Total</span></strong></td>
+	                              <td colspan="2"><strong id="amounttotal" th:text="${#numbers.formatDecimal(@cart.Amount+orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}">500.000</strong>(<span th:text="#{cart.currency}"></span>)</td>
+	                          </tr>
+	                          <tr style="display:none;">
+	                              <td colspan="2"><strong id="orginal_amounttotal" th:text="${#numbers.formatDecimal(@cart.Amount+orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}">500.000</strong></td>
+	                          </tr>
+	                      </tfoot> 
+		                </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+<script src="shop/js/order/main.js"></script>
+</body>
+</html>

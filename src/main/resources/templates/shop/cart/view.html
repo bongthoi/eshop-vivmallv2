@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+	
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page" th:text="#{cart.title}">Your shopping cart</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+        	<form method="post" id="frm_cartview_edit" novalidate="novalidate"
+					th:action="@{cart/update}">
+            <div class="order-detail-content">
+                <table class="table table-bordered table-responsive cart_summary">
+                    <thead>
+                        <tr>
+                        	<th	style="width:4px;"><span	th:text="#{cart.ord}">Ord</span></th>
+                            <th class="cart_product"><span	th:text="#{cart.images}">Picture</span></th>
+                            <th><span	th:text="#{cart.productname}">Product name</span></th>
+                            <th><span	th:text="#{cart.unitprice}">Unit price</span></th>
+                            <th><span	th:text="#{cart.qty}">Qty</span></th>
+                            <th style="width:100px;align:center;"><span	th:text="#{cart.discount}">Discount</span></th>
+                            <th><span	th:text="#{cart.total}">Total</span></th>
+                            <th  class="action"><i class="fa fa-trash-o"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="product,iterProduct:${@cart.items}">
+                        	<td	style="width:4px;"><span	th:text="${iterProduct.count}"></span></td>
+                            <td class="cart_product">
+                                <a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><img th:src="@{'~/upload/product/' +${product.FeatureImage}}" alt="Product"></a>
+                            </td>
+                            <td class="cart_description">
+                                <p class="product-name"><a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><span th:text="${product.ProductName}">Product name</span></a></p>
+                            </td>
+                            <td class="price"><span th:text="${#numbers.formatDecimal(product.SellPrice, 0, 'DEFAULT', 0, 'DEFAULT')}">61,19</span></td>
+                            <td class="product-quality">
+								<input type="hidden" id="quality_available_1005823282" value="10000">
+								<input type="hidden" id="quality_current_1005823282" value="4">
+								<input th:attr="name=${product.id}" th:value="${product.quantity}" type="number" id="updates_1005823282" onfocus="this.select();" class="qty" min="1">
+								<div class="clearfix"></div>
+							</td>
+							<td style="width:100px;align:center;"><span th:text="100-${#numbers.formatDecimal((product.SellPrice*100)/product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+'%'">61,19</span></td>
+                            <td class="price">
+                                <span th:text="${#numbers.formatDecimal(product.SellPrice*product.quantity, 0, 'DEFAULT', 0, 'DEFAULT')}">61,19</span>
+                            </td>
+                            <td class="action">
+                                <a th:href="@{cart/{id}/remove(id=${product.id})}">Delete item</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6"><strong th:text="#{cart.total}">Total</strong></td>
+                            <td colspan="2"><strong th:text="${#numbers.formatDecimal(@cart.Amount, 0, 'DEFAULT', 0, 'DEFAULT')}">500.000</strong>(<span th:text="#{cart.currency}"></span>)</td>
+                        </tr>
+                    </tfoot>    
+                </table>
+                <div class="cart_navigation">
+                    <a  th:href="@{home}" class="prev-btn">
+                    	<span	th:text="#{cart.continueshopping}">Continue shopping</span>
+					</a> 
+					
+					<a th:href="@{cart/clear}" class="prev-btn">
+						<span class="btn_item"><span	th:text="#{cart.clearall}">Clear all</span></span>
+					</a>
+					<a class="prev-btn">
+					<button class="btn_item" type="submit"><span	th:text="#{cart.updateall}">Update</span></button>
+					</a>
+					<a th:href="@{order/checkout}" class="next-btn">
+						<span class="btn_item"><span	th:text="#{cart.proceedtocheckout}">Proceed to checkout</span></span>
+					</a>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

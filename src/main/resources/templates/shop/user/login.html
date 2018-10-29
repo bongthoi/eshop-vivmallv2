@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span th:text="#{layout.header.menu.home}"></span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page"><span th:text="#{user.login}">login</span></span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2"><span th:text="#{user.login.form}">login</span></span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content">
+            <div class="row">
+            	<!-- /* Handle the flash message */-->
+				<th:block th:if="${message != null}">
+					<!-- /* The message code is returned from the @Controller */ -->
+					<div
+						th:replace="shop/fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+				</th:block>
+				<!-- /* end Handle the flash message */-->
+                <div class="col-sm-5">
+                        <img src="shop/assets/images/Secure.png">
+                </div>
+                <div class="col-sm-7">
+                    <div class="box-authentication">
+                        <div class="login-box-body col-sm-10">
+						<p class="login-box-msg"><span	th:text="#{user.login.session}">Sign in to start your session</span></p>
+
+						<div class="error" style="color: red" th:if="${error!=null}"
+							th:text="${error}">error</div>
+						<div class="msg" th:if="${mgs!=null}" th:text="${mgs}">msg</div>
+
+						<form name='loginForm' action="user_login" method='POST'>
+							<div class="form-group has-feedback">
+								<input 	type="text" class="form-control" placeholder="User name"	name="username" value=""> 
+								<span	class="glyphicon glyphicon-envelope form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="password" class="form-control"
+									placeholder="Password" name="password" value="">
+								<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+							</div>
+							<div class="row">
+								<div class="col-xs-8">
+									<div class="checkbox icheck">
+										<label><input type="checkbox" th:text="#{user.login.rememberme}"></label>
+									</div>
+								</div>
+								<!-- /.col -->
+								<div class="col-xs-4">
+									<button type="submit" class="btn btn-primary btn-block btn-flat"><span th:text="#{user.login.signin}">Sign In</span></button>
+								</div>
+								<!-- /.col -->
+							</div>
+							<br>
+							<div class="row">
+								<span style="margin-left:35px;margin-top:50px;" th:text="#{user.login.notmemeber}"></span>
+								<a th:href="@{user/register}" th:text="#{user.login.registernow}"></a>
+							</div>
+						</form>
+					</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+
+
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

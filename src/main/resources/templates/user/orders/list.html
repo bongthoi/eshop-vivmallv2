@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments/layout :: head"></head>
+<body class="hold-transition skin-red sidebar-mini">
+<div class="wrapper" style="height: auto;">
+    <header th:replace="user/fragments/layout :: header"></header>
+
+  	 <aside th:replace="user/fragments/layout :: sidebar" class="main-sidebar"></aside>
+  	 
+  	  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Orders
+        <small>List Item</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a th:href="@{home}"><i class="fa fa-dashboard" ></i> <span th:text="#{layout.header.menu.home}">Home</span></a></li>
+        <li class="active"><span th:text="#{layout.header.menu.home}">Orders</span></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box box-primary">
+      			 		  <!-- /* Handle the flash message */-->
+									    <th:block th:if="${message != null}">
+									        <!-- /* The message code is returned from the @Controller */ -->
+									        <div th:replace="user/fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+									    </th:block>
+									      <!-- /* end Handle the flash message */-->
+        <div class="box-body tb-industry">
+            <form id="frm-table-industry" novalidate="novalidate" method="post" style=" overflow-y: auto;">
+           	<table class="table table-hover table-bordered">
+                <thead><tr>
+               		<th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.id}">#ID</span></th>
+               		  <th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.email}">Email</span></th>
+               		    <th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.name}">Name</span></th>
+               		     <th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.address}">Address</span></th>
+               		     <th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.phone}">Phone</span></th>
+               		      <th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.totalquanlity}">TotalQuantity</span></th>   
+               		        <th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.totalamount}">TotalAmount</span></th>    
+                	  <th class="text-center" style="vertical-align: middle"><span th:text="#{user.orders.list.createddate}">Created Date</span></th> 
+                   <th class="text-center" style="vertical-align: middle"  width="100"><span th:text="#{user.orders.list.checkstatus}">Checked Status</span></th>
+                </tr>
+              <thead>
+              <tbody>
+              		<tr  th:each="orders:${orderses}">
+              			<td  ><a target="_blank" th:href="@{'_user/orders/info/' + ${orders.id}}"> <i class="fa fa-search text-green" ></i> <span th:text="${orders.id}"></span> </a></td>
+              			<td  th:text="${orders.Email}"></td>
+              			<td  th:text="${orders.Name}"></td>
+              			<td  th:text="${orders.Address}"></td>
+              			<td  th:text="${orders.Phone}"></td>
+              			<td class="text-right"   th:text="${orders.TotalQuantity}"></td>
+              			<td class="text-right"  th:text="${orders.TotalAmount}"></td>
+              				<td  th:text="${#dates.format(orders.CreateDate, 'dd/MM/yyyy')}"></td>
+              		<td class="text-center" style="vertical-align: middle">
+              				<span th:replace="user/fragments/status :: document(status=${orders.IsCheck})"></span>
+              			</td>
+              			
+              		</tr>
+              </tbody>
+              </table>
+            </form>  
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer ">
+              <div class="mailbox-controls">
+               			<div th:replace="user/fragments/paginationbar :: paginationbar"></div>
+                <!-- /.pull-right -->
+              </div>
+            </div>
+      </div>
+      <!-- /.box -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+ <script src="js/orders/main.js"></script> 	 
+
+    <footer th:replace="user/fragments/layout :: footer"></footer>
+  <!-- /wapper -->
+  </div>  
+</body>
+</html>

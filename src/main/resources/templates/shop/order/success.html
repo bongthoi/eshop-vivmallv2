@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page" th:text="#{order.success}">Successfull</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2" th:text="#{order.success}">Successfull</span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content">
+            <div class="col-md-12">
+				<span th:text="#{order.messages.success}"></span> <a th:href="@{_user/orders}" class="btn btn-default btn-flat"><span th:text="#{order.manager}">Orders</span></a>
+
+			</div>
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

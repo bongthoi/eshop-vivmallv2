@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+    <th:block	th:fragment="htmlstatus(status)">
+    		 <span th:if="${status == 1}" class="label label-success">Active</span>
+    		 <span th:if="${status == 0}" class="label label-danger">Disabled</span>
+    </th:block>
+    
+     <th:block	th:fragment="document(status)">
+     		 <span th:if="${status == 2}" class="label label-danger"><span th:text="#{user.orders.status.destroy}">Destroy</span></span>
+    		 <span th:if="${status == 1}" class="label label-success"><span th:text="#{user.orders.status.checked}">Checked</span></span>
+    		 <span th:if="${status == 0}" class="label label-warning"><span th:text="#{user.orders.status.pending}">Pending</span></span>
+    </th:block>
+   
+</body>
+</html>

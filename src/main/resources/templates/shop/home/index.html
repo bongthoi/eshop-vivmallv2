@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- sellers -->
+<div class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h2 class="page-heading">
+                    <a href="http://buyerapp.vivmall.vn/" target="blank"><span class="page-heading-title"><span	th:text="#{home.supplier.title}">NHÀ CUNG CẤP</span></span></a>
+                </h2>
+                <div class="latest-deals-product">
+                    <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "10" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" >
+                        <li th:each="seller,iterSeller:${product_sellers}" th:if="${iterSeller.count<=10}">
+                            <div class="left-block">
+                                <a th:href="${link_seller_url}+${seller.id}" target="_blank">
+                                	<img class="img-responsive image_fixed" alt="" th:src="${image_seller_url}+${seller.image}" />
+                                </a>
+                            </div>
+                            <div class="right-block">
+                                <h5 class="product-name"><a th:href="${link_seller_url}+${seller.id}" target="_blank"><span	th:text="${seller.name}">Luxury Perfume</span></a></h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end seller -->
+<!-- content-->
+<div class="content-page">
+    <div class="container">
+        <!-- featured category fashion -->
+        <th:block th:if="${#lists.isEmpty(industries)}">
+			<h3 >No Categories</h3>
+		</th:block>
+		<th:block th:unless="${#lists.isEmpty(industries)}">
+        <div th:each="industry,iterCate:${industries}" th:attr="class='category-featured '+${industry.ColorBackground}">
+            <nav class="navbar nav-menu show-brand">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-brand"><a th:href="@{category/findByIndustry/{id}/{seourl}(id=${industry.id},seourl=${industry.friendlyurl})}"><img alt="fashion" th:src="@{'~/'+'upload/industry/'+${industry.Icon}}"/><span th:text="${industry.IndustryName}"></span></a></div>
+                  <span class="toggle-menu"></span>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse">           
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a data-toggle="tab" href="#tab-4"><span th:text="#{home.industry.category.newarrivals}">New Arrivals</span></a></li>
+                    
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+              <div id="elevator-1" class="floor-elevator">
+                    <a href="#" class="btn-elevator up disabled fa fa-angle-up"></a>
+                    <a href="#elevator-2" class="btn-elevator down fa fa-angle-down"></a>
+              </div>
+            </nav>
+           <div class="product-featured clearfix">
+                <div class="row" th:each="category,iterCate:${industry.Categorylist}">
+					<th:block th:if="${iterCate.first}">
+                    <div class="col-sm-2 sub-category-wapper">
+                        <ul class="sub-category-list">
+                            <li th:each="category1:${industry.Categorylist}">
+                            	<a th:href="@{product/findByCate/{id}/{seourl}(id=${category1.id},seourl=${category1.friendlyurl})}"><span th:text="${category1.CategoryName}"></span></a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    
+                    <div class="col-sm-10 col-right-tab">
+                        <div class="product-featured-tab-content">
+                            <div class="tab-container">
+                                <div class="tab-panel active" id="tab-4">
+                                   <div class="box-left">
+                                       <div class="banner-img">
+                                            <a th:href="@{category/findByIndustry/{id}/{seourl}(id=${industry.id},seourl=${industry.friendlyurl})}"><img th:src="@{'~/upload/industry/' +${industry.IndustryImg}}" alt="Banner Product"></a>
+                                        </div>
+                                   </div>
+                                   <div class="box-right">
+                                       <ul class="product-list row">
+                                                <li class="col-sm-4" th:each="product,iterCate:${category.Productlist}">
+                                                
+                                                    <div class="right-block">
+                                                        <h5 class="product-name"><a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><span th:text="${product.ProductName}"></span></a></h5>
+                                                        <div class="content_price">
+                                                            <span class="price product-price" th:text="${#numbers.formatDecimal(product.SellPrice, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}"></span>
+                                                            <th:block th:if="${product.SellPrice}<${product.SellPrice1}">
+                                                        		<span	class="price old-price"><span class="price old-price" th:text="${#numbers.formatDecimal(product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}">$152,00</span></span>
+                                                        	</th:block>
+                                                        </div>
+                                                    </div>
+                                                    <div class="left-block">
+                                                        <a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><img class="img-responsive" alt="product" th:src="@{'~/upload/product/' +${product.FeatureImage}}"/></a>
+                                                        <div class="quick-view">
+                                                                <a title="Add to my wishlist" class="heart" ></a>
+                                                                <a title="Add to compare" class="compare" ></a>
+                                                                <a title="Quick view" class="search" ></a>
+                                                        </div>
+                                                        <div th:attr="data-id=${product.id}" class="add-to-cart">
+                                                            <a title="Add to Cart"><span	th:text="#{cart.addtocart}">Add to Cart</span></a>
+                                                        </div>
+                                                        <th:block th:if="${product.SellPrice}<${product.SellPrice1}">
+	                                                        <div class="price-percent-reduction2">
+	                                                        	<span>-</span>
+							                                    <span th:text="100-${#numbers.formatDecimal((product.SellPrice*100)/product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+'%'">-30%</span>
+							                                </div>
+						                                </th:block>
+                                                    </div>
+                                                  
+                                                </li>
+                                                                                           
+                                       </ul>
+                                   </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                   </th:block>
+                </div>
+           </div>
+        </div>
+        <!-- end featured category fashion -->
+        </th:block>
+    </div>
+</div>
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

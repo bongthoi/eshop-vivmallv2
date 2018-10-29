@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2 product-page">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span th:text="${product.ProductName}" class="navigation_page">Maecenas consequat mauris</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-12" id="center_column">
+                <!-- Product -->
+                    <div id="product">
+                        <div class="primary-box row">
+                            <div class="pb-left-column col-xs-12 col-sm-5">
+                                <!-- product-imge-->
+                                <div class="product-image">
+                                    <div class="product-full">
+                                        <img id="product-zoom" th:src="@{'~/upload/product/'+${product.FeatureImage}}" data-zoom-image="shop/assets/data/product-s3-850x1036.jpg"/>
+                                    </div>
+                                </div>
+                                <!-- product-imge-->
+                            </div>
+                            <div class="pb-right-column col-xs-12 col-sm-7">
+                                <h1 class="product-name"><span th:text="${product.ProductName}"></span></h1>
+                                <div class="product-comments">
+                                    <div class="product-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="comments-advices">
+                                        <a ><span	th:text="#{product.detail.basedonratings}">Based  on 3 ratings</span></a>
+                                    </div>
+                                </div>
+                                <div class="product-price-group">
+                                    <span class="price" th:text="${#numbers.formatDecimal(product.SellPrice, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}">$38.95</span> 
+                                	<th:block th:if="${product.SellPrice}<${product.SellPrice1}">
+                                          <span	class="price old-price"><span class="price old-price" th:text="${#numbers.formatDecimal(product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}">$152,00</span></span>
+                                          <span class="discount" th:text="100-${#numbers.formatDecimal((product.SellPrice*100)/product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+'%'">-30%</span>
+                                    </th:block>
+                                </div>
+                                <div class="product-desc">
+                                    <p th:utext="${product.ProductDes}"></p>
+                                </div>
+                                
+                                <div class="form-action">
+                                    <div>
+                                    	<form id="frm_product_detail">
+											<table cellpadding="0" cellspacing="0" border="0">
+												<tr>
+													<td><input type=button value=" - " id="Down"></td>
+													<td rowspan="2"><input  id="input" type="text" name="number" value="1" style="width: 50px; height: 25px; border: 1px solid orangered; text-align: center;" disabled/></td>
+													<td><input type="button" value=" + " id="Up" style="margin-right:20px;"></td>
+													<td>
+														<div th:attr="data-id=${product.id}" class="add-to-cart btn-add-cart" id="btn">
+															<span th:text="#{cart.addtocart}">ThÃªm
+															vÃ o giá»� hÃ ng</span>
+														</div>
+													</td>
+												</tr>
+											</table>
+										</form>
+                                    </div>
+                                </div>
+                                <div class="form-share">
+                                    <div class="sendtofriend-print">
+                                        <a href="javascript:print();"><i class="fa fa-print"></i> <span	th:text="#{product.detail.print}">Print</span></a>
+                                        <a ><i class="fa fa-envelope-o fa-fw"></i><span	th:text="#{product.detail.sendtoafriend}">Send to a friend</span></a>
+                                    </div>
+                                    <div class="network-share">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tab product -->
+                        <div class="product-tab">
+                            <ul class="nav-tab">
+                            	<li	class="active">
+                                    <a aria-expanded="false" data-toggle="tab" href="#product-detail"><span	th:text="#{product.detail.productdetail}">Product Details</span></a>
+                                </li>
+                                <li >
+                                	<a data-toggle="tab" href="#extra-tabs"><span	th:text="#{product.detail.productguide}">ProductGuide</span></a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-container">
+                                <div id="product-detail" class="tab-panel active">
+                                    <p th:utext="${product.ProductInfo}"></p>
+                                </div>
+                                <div id="extra-tabs" class="tab-panel ">
+                                    <p th:utext="${product.ProductGuide}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./tab product -->
+                        <!-- box product -->
+                        <div class="page-product-box">
+                            <h3 class="heading" th:text="#{product.detail.relatedproduct}">Related Products</h3>
+                            <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "10" data-autoplayTimeout="1000" data-autoplayHoverPause = "true">
+                                <li th:each="product:${related_products}">
+                                    <div class="product-container">
+                                        <div class="left-block">
+                                             <a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><img class="img-responsive" alt="product" th:src="@{'~/upload/product/' +${product.FeatureImage}}"/></a>
+                                             <div class="quick-view">
+                                                     <a title="Add to my wishlist" class="heart" ></a>
+                                                     <a title="Add to compare" class="compare" ></a>
+                                                     <a title="Quick view" class="search" ></a>
+                                             </div>
+                                             <div th:attr="data-id=${product.id}" class="add-to-cart">
+                                                 <a title="Add to Cart"><span	th:text="#{cart.addtocart}">Add to Cart</span></a>
+                                             </div>
+                                             <th:block th:if="${product.SellPrice}<${product.SellPrice1}">
+	                                             <div class="price-percent-reduction2">
+	                                                  <span>-</span>
+							                          <span th:text="100-${#numbers.formatDecimal((product.SellPrice*100)/product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+'%'">-30%</span>
+							                     </div>
+						                     </th:block>
+                                        </div>
+                                        <div class="right-block">
+                                           <h5 class="product-name"><a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><span th:text="${product.ProductName}"></span></a></h5>
+                                           <div class="content_price">
+                                               <span class="price product-price" th:text="${#numbers.formatDecimal(product.SellPrice, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}"></span>
+                                               <th:block th:if="${product.SellPrice}<${product.SellPrice1}">
+                                           		<span	class="price old-price"><span class="price old-price" th:text="${#numbers.formatDecimal(product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}">$152,00</span></span>
+                                           	</th:block>
+                                           </div>
+                                       </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- ./box product -->
+                    </div>
+                <!-- Product -->
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

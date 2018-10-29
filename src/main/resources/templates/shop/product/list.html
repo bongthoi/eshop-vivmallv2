@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+	
+<div class="row">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+    <div class="center_column" id="center_column">
+    			<!-- breadcrumb -->
+		        <div class="breadcrumb clearfix">
+		            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+		            <span class="navigation-pipe">&nbsp;</span>
+		            <span class="navigation_page" th:text="${category_name}"></span>
+		        </div>
+		        <!-- ./breadcrumb -->	
+    	<!-- view-product-list-->
+                <div id="view-product-list" class="view-product-list">
+                    <h2 class="page-heading">
+                        <span class="page-heading-title" th:text="${category_name}">Women</span>
+                    </h2>
+                    <ul class="display-product-option">
+                        <li class="view-as-grid selected">
+                            <span>grid</span>
+                        </li>
+                        <li class="view-as-list">
+                            <span>list</span>
+                        </li>
+                    </ul>
+                    <!-- PRODUCT LIST -->
+                    <ul class="row product-list grid">
+                        <li class="col-sx-12 col-sm-3" th:each="product:${products}">
+                            <div class="product-container">
+                                <div class="left-block">
+                                    <a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}">
+                                        <img class="img-responsive" alt="product" th:src="@{'~/upload/product/'+${product.FeatureImage}}" />
+                                    </a>
+                                    <div class="quick-view">
+                                            <a title="Add to my wishlist" class="heart" ></a>
+                                            <a title="Add to compare" class="compare" ></a>
+                                            <a title="Quick view" class="search" ></a>
+                                    </div>
+                                    <div th:attr="data-id=${product.id}" class="add-to-cart">
+                                        <a title="Add to Cart"><span	th:text="#{cart.addtocart}">Add to Cart</span></a>
+                                    </div>
+                                    <th:block th:if="${product.SellPrice}<${product.SellPrice1}">
+	                                    <div class="price-percent-reduction2">
+	                                    	<span>-</span>
+		                                    <span th:text="100-${#numbers.formatDecimal((product.SellPrice*100)/product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+'%'">-30%</span>
+		                                </div>
+	                                </th:block>
+                                </div>
+                                <div class="right-block">
+                                    <h5 class="product-name"><a th:href="@{product/detail/{id}/{seourl}(id=${product.id},seourl=${product.friendlyurl})}"><span th:text="${product.ProductName}"></span></a></h5>
+                                    <div class="product-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="content_price">
+                                        <span class="price product-price"  th:text="${#numbers.formatDecimal(product.SellPrice, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}">$38,95</span>
+                                        <th:block th:if="${product.SellPrice}<${product.SellPrice1}">
+                                            <span	class="price old-price"><span class="price old-price" th:text="${#numbers.formatDecimal(product.SellPrice1, 0, 'DEFAULT', 0, 'DEFAULT')}+#{cart.currency}">$152,00</span></span>
+                                        </th:block>
+                                    </div>
+                                    <div class="info-orther">
+                                        <!-- <p>Item Code: #453217907</p>
+                                        <p class="availability">Availability: <span>In stock</span></p> -->
+                                        <div class="product-desc">
+                                            <p th:utext="${product.ProductDes}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                    <!-- ./PRODUCT LIST -->
+                </div>
+                <!-- ./view-product-list-->
+    </div>
+    </div>
+	<div class="col-sm-1"></div>
+</div>
+<div class="row">
+	<div th:replace="shop/fragments/paginationbar :: paginationbar"></div>
+</div>
+
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

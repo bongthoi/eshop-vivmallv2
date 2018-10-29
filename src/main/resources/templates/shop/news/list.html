@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="shop/fragments/layout :: head"></head>
+<body class="home option2 category-page">
+<!-- HEADER -->
+<div id="header" class="header" th:replace="shop/fragments/layout :: header"></div>
+<!-- end header -->
+<!-- Home slideder-->
+<div id="home-slider" th:replace="shop/fragments/layout :: slider"></div>
+<!-- -->
+	
+	<!-- page wapper-->
+	<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" th:href="@{home}" title="Return to Home"><span	th:text="#{layout.header.menu.home}">Home</span></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page" th:text="#{news.title}">Tin tức</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <div class="column col-xs-12 col-sm-3" id="left_column">
+                <!-- Blog category -->
+                <div class="block left-module">
+                    <p class="title_block">Danh mục</p>
+                    <div class="block_content">
+                        <!-- layered -->
+                        <div class="layered layered-category">
+                            <div class="layered-content">
+                                <ul class="tree-menu">
+                                    <li th:each="ncategory:${newscategories}" th:class="${ncategory.id==active}? 'active':''">
+                                    	<span></span><a th:href="@{newsbycateid/{id}/{seourl}(id=${ncategory.id},seourl=${ncategory.friendlyurl})}"><span th:text="${ncategory.name}"></span></a>
+                                   	</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- ./layered -->
+                    </div>
+                </div>
+                <!-- ./blog category  -->
+            </div>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <ul class="blog-posts">
+                    <li class="post-item" th:each="news:${newslist}">
+                        <article class="entry">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="entry-thumb image-hover2">
+                                        <a th:href="@{news/detail/{id}/{seourl}(id=${news.id},seourl=${news.friendlyurl})}">
+                                            <img th:src="@{'~/upload/news/'+${news.image_feature}}" alt="Blog">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="entry-ci">
+                                        <h3 class="entry-title"><a th:href="@{news/detail/{id}/{seourl}(id=${news.id},seourl=${news.friendlyurl})}"><span th:text="${news.title}">Joanne Cheung </span></a></h3>
+                                        <div class="entry-meta-data">
+                                            <span class="date"><i class="fa fa-calendar"></i><span th:text="${news.create_date}"> 2017-08-05 07:01:49</span></span>
+                                        </div>
+                                        <div class="entry-excerpt" th:utext="${#strings.substringBefore(news.content,'....')+'...'}">
+                                            Joanne Cheung – Tổng giám đốc và đồng thời cũng là người sáng lập ra công ty Korex Technology Co.,Ltd, một trong những  doanh nghiệp tiên phong trong lĩnh vực thiết bị điện tử thông minh tại Shenzhen. Vivmall.vn rất hân hạnh được hợp tác với Korex để đem đến những sản phẩm Smart watch, Fitness tracker và thiết bị Smart home đến thị trường Việt Nam để ra mắt thị trường công nghệ điện tử thông minh tại Việt Nam.
+                                        </div>
+                                        <div class="entry-more">
+                                            <a th:href="@{news/detail/{id}/{seourl}(id=${news.id},seourl=${news.friendlyurl})}">Xem tiếp >></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+	<!-- ./page wapper-->
+<div class="row">
+	<div th:replace="shop/fragments/paginationbar :: paginationbar"></div>
+</div>
+<!-- Footer -->
+<footer th:replace="shop/fragments/layout :: footer"></footer>
+</body>
+</html>

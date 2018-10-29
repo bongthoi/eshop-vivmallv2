@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sending email for your account</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+    <!-- use the font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+    <tr>
+        <td align="center" bgcolor="white" style="padding: 40px 0 30px 0;text-align:left;">
+        	<p style="color:red;"><span th:text="#{email.user.confirm.dear}">Dear </span> <span th:text="${receiver.FirstName}" style="text-transform: capitalize;"></span></p>
+        	<p></p>
+			<p th:text="#{email.user.activated}">Chúng tôi vừa bàn giao đơn hàng của quý khách đến đối tác vận chuyển của Vivmall.</p>
+			<br></br><br></br>
+        </td>
+    </tr>
+    <tr>
+		<td><span th:text="#{register.form.username}">Username:</span> <span th:text="${receiver.username}"></span></td>
+	</tr><br></br>
+	<tr>
+		<td><span th:text="#{register.form.password}">Password:</span> <span>********</span></td>	
+	</tr>
+    <tr><br></br><br></br><hr></hr>
+    <tr>
+		<td><span th:text="#{email.user.confirm.thank}"></span></td>
+	</tr><br></br>
+	<tr>
+		<td><span th:text="#{email.user.confirm.vivmail}"></span></td>	
+	</tr>
+    <tr>
+        <td  bgcolor="#78ab46" style="padding: 30px 30px 30px 30px;">
+            <p th:text="#{layout.footer.company.value}" style="text-transform: uppercase;"></p>
+            <p><span th:text="#{layout.footer.address.title}">Address:</span> <span th:text="#{layout.footer.address.value}">Trần Quý,Phường 06,Quận 11,TP.Hồ Chí Minh</span></p>
+            <p><span th:text="#{layout.footer.phone.title}">Phone:</span> <span th:text="#{layout.footer.phone.value}">028.62866208</span></p>
+            <p><span th:text="#{layout.footer.email.title}">Email:</span> <span th:text="#{layout.footer.email.value}">support@business.com</span></p>
+            
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

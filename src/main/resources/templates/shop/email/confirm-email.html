@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sending Email for Your Orders</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+    <!-- use the font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+    <tr>
+        <td align="center" bgcolor="white" style="padding: 40px 0 30px 0;text-align:left;">
+        	<p style="color:red;"><span th:text="#{email.confirm.dear}">Dear </span> <span th:text="${user.FirstName}" style="text-transform: capitalize;"></span></p>
+        	<p></p>
+            <p>
+            	<b th:text="#{email.confirm.header1}">Đơn hàng đã sẵn sàng để giao đến quý khách!</b>
+           	</p>
+			<p th:text="#{email.confirm.header2}">Chúng tôi vừa bàn giao đơn hàng của quý khách đến đối tác vận chuyển của Vivmall.</p>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#eaeaea" style="padding: 0px 1px 10px 1px ;">
+            <table style="border: 1px solid lightgray;text-align:left;width:100%;margin:1px">
+				<thead>
+					<tr>
+						<td colspan="2"></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="padding:20px 15px;">
+							<button type="button" style="background-color:#39792f;color:white;margin-left:30%;"><span th:text="#{email.confirm.order.status}">Kiểm tra trạng thái đơn hàng</span></button><br>
+							</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="padding: 5px 15px;">
+							<span style="color:#39792f"><b th:text="#{email.confirm.orderinfo}">THÔNG TIN ĐƠN HÀNG #No:</b><b th:text="${orders.id}" style="color:red;" ></b></span>--<span th:text="#{email.confirm.createdate}" style="color:#39792f;" >Create date:</span><span th:text="${#dates.format(orders.CreateDate,'dd-MM-yyyy HH:mm')}">(Ngày tháng năm</span>)
+							<hr>
+						</td>	
+					</tr>
+					<tr>
+						<td style="width:50%;padding: 5px 15px;">
+							<span><b	th:text="#{email.confirm.paymentinfo}">Thông tin thanh toán</b></span><br>
+							<span><b	th:text="#{email.confirm.name}">Name:</b><i	th:text="${user.FirstName}">Trịnh Nguyễn Ngọc Quỳnh</i></span><br>
+							<span><b	th:text="#{email.confirm.email}">Email:</b><i	th:text="${user.username}">minhchau2611@gmail.com</i></span><br>
+							<span><b	th:text="#{email.confirm.phone}">Phone:</b><i	th:text="${user.phone}">0983250889</i></span><br>
+							<span><b	th:text="#{email.confirm.address}">Address:</b><i	th:text="${user.address}">0983250889</i></span>
+							<br>
+						</td>
+						<td style="width:50%;padding: 5px 15px;">
+							<span><b	th:text="#{email.confirm.deliveryinfo}">Địa chỉ giao hàng</b></span><br>
+							<span><b	th:text="#{email.confirm.name}">Name:</b><i	th:text="${orders.Name}">Trịnh Nguyễn Ngọc Quỳnh</i></span><br>
+							<span><b	th:text="#{email.confirm.email}">Email:</b><i	th:text="${orders.Email}">minhchau2611@gmail.com</i></span><br>
+							<span><b	th:text="#{email.confirm.phone}">Phone:</b><i	th:text="${orders.Phone}">0983250889</i></span><br>
+							<span><b	th:text="#{email.confirm.address}">Address:</b><i	th:text="${orders.Address}">0983250889</i></span><br>
+							<span><b	th:text="#{email.confirm.note}">NOte:</b><i	th:text="${orders.Note}">0983250889</i></span>
+							<br>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="padding: 5px 15px;">
+							<span><b	th:text="#{email.confirm.deliverymethod.name}"></b> <i	th:text="${orders.DeliveryMethod.name}"></i></span><br>
+							<!-- <span><b	th:text="#{email.confirm.deliverymethod.fee}"></b> <i	th:text="${#numbers.formatDecimal(orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}"></i></span><br> -->
+							<span><b	th:text="#{email.confirm.paymentmethod}">Phương thức thanh toán :</b> <i	th:text="${orders.PaymentMethod.name}">Thanh toán tiền mặt khi nhận hàng</i></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="padding: 5px 15px;">
+							<span style="color:#39792f"><b th:text="#{email.confirm.order.detail}">CHI TIẾT ĐƠN HÀNG</b></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="padding: 5px 15px;">
+							<table style="border: 1px solid;border-collapse: collapse;text-align:left;width:100%">
+			                    <thead>
+			                        <tr style="background-color:#39792f;color:white ">
+			                            <th	th:text="#{email.confirm.order.detail.stt}">STT</th>
+			                            <th	th:text="#{email.confirm.order.detail.prodname}">Product name</th>
+			                            <th	th:text="#{email.confirm.order.detail.unitprice}">Unit price</th>
+			                            <th	th:text="#{email.confirm.order.detail.qty}">Qty</th>
+			                            <th	th:text="#{email.confirm.order.detail.discount}">Discount</th>
+			                            <th	th:text="#{email.confirm.order.detail.total}">Total</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr th:each="detail,iterDetail:${orders.ordersDetails}">
+			                            <td><span	th:text="${iterDetail.count}">1</span></td>
+			                            <td><span	th:text="${detail.ProductName}">1</span></td>
+			                            <td><span	th:text="${detail.Price}"></span></td>
+			                            <td><span	th:text="${detail.Quantity}"></span></td>
+			                            <td><span	th:text="100-${#numbers.formatDecimal((detail.Price*100)/detail.Price1, 0, 'DEFAULT', 0, 'DEFAULT')}+'%'">0%</span>(<span th:text="#{cart.currency}"></span>)</td>
+			                            <td><span	th:text="${detail.Amount}"></span></td>
+			                        </tr>
+			                    </tbody>
+			                    <tfoot>
+			                    	<tr style="text-align:right;">
+			                            <td colspan="4"><strong	th:text="#{email.confirm.deliverymethod.fee}">Shipping Fee</strong></td>
+			                            <td colspan="2" th:text="${#numbers.formatDecimal(orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}"></td>
+			                        </tr>
+			                        <tr style="text-align:right;">
+			                            <td colspan="4"><strong	th:text="#{email.confirm.order.detail.total}">Total</strong></td>
+			                            <td colspan="2"><strong th:text="${#numbers.formatDecimal(orders.TotalAmount+orders.DeliveryMethod.fee, 0, 'DEFAULT', 0, 'DEFAULT')}">500.000</strong>(<span th:text="#{cart.currency}"></span>)</td>
+			                        </tr>
+			                    </tfoot>     
+			                </table>
+						</td>
+					</tr>
+				</thead>
+			</table>
+        </td>
+    </tr><hr></hr>
+    <tr>
+		<td><span th:text="#{email.user.confirm.thank}"></span></td>
+	</tr><br></br>
+	<tr>
+		<td><span th:text="#{email.user.confirm.vivmail}"></span></td>	
+	</tr>
+    <tr>
+        <td  bgcolor="#78ab46" style="padding: 30px 30px 30px 30px;">
+            <p th:text="#{layout.footer.company.value}" style="text-transform: uppercase;"></p>
+            <p><span th:text="#{layout.footer.address.title}">Address:</span> <span th:text="#{layout.footer.address.value}">Trần Quý,Phường 06,Quận 11,TP.Hồ Chí Minh</span></p>
+            <p><span th:text="#{layout.footer.phone.title}">Phone:</span> <span th:text="#{layout.footer.phone.value}">028.62866208</span></p>
+            <p><span th:text="#{layout.footer.email.title}">Email:</span> <span th:text="#{layout.footer.email.value}">support@business.com</span></p>
+            
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

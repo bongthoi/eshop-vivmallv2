@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-07-10T16:26:50 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="qrproduct" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="06d89155-6b63-490d-8992-83ca1e14a880">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="productDatasource" class="vivmallcn.domain.Product"/>
+	<parameter name="QrUrldatasource" class="java.lang.String">
+		<defaultValueExpression><![CDATA[123456]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="7" width="269" height="30" uuid="75debe78-1bd0-47cf-8a81-42735d9f6a5d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{productDatasource}.getProductName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="7" width="275" height="30" uuid="f0646c09-d4f6-41f4-87c7-4af685b6dddb"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{productDatasource}.getId()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="700" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="10" width="555" height="111" uuid="5978c447-d554-4749-959a-4e687cc256d3">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="111" height="111" uuid="846cdf0f-2178-4a2c-a500-de1b60e43abc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="d9430c62-79ae-486e-b554-942f2a36ff29">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="111" y="0" width="111" height="111" uuid="2406171c-3a33-44b8-8f1b-490971867ccc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="8b2acc05-5fa1-4ac6-a594-80e81a9e03fa">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="222" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="333" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="444" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="0" y="121" width="555" height="111" uuid="5978c447-d554-4749-959a-4e687cc256d3">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="111" height="111" uuid="846cdf0f-2178-4a2c-a500-de1b60e43abc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="d9430c62-79ae-486e-b554-942f2a36ff29">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="111" y="0" width="111" height="111" uuid="2406171c-3a33-44b8-8f1b-490971867ccc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="8b2acc05-5fa1-4ac6-a594-80e81a9e03fa">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="222" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="333" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="444" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="0" y="232" width="555" height="111" uuid="5978c447-d554-4749-959a-4e687cc256d3">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="111" height="111" uuid="846cdf0f-2178-4a2c-a500-de1b60e43abc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="d9430c62-79ae-486e-b554-942f2a36ff29">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="111" y="0" width="111" height="111" uuid="2406171c-3a33-44b8-8f1b-490971867ccc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="8b2acc05-5fa1-4ac6-a594-80e81a9e03fa">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="222" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="333" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="444" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="0" y="343" width="555" height="111" uuid="5978c447-d554-4749-959a-4e687cc256d3">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="111" height="111" uuid="846cdf0f-2178-4a2c-a500-de1b60e43abc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="d9430c62-79ae-486e-b554-942f2a36ff29">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="111" y="0" width="111" height="111" uuid="2406171c-3a33-44b8-8f1b-490971867ccc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="8b2acc05-5fa1-4ac6-a594-80e81a9e03fa">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="222" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="333" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="444" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="0" y="454" width="555" height="111" uuid="5978c447-d554-4749-959a-4e687cc256d3">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="111" height="111" uuid="846cdf0f-2178-4a2c-a500-de1b60e43abc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="d9430c62-79ae-486e-b554-942f2a36ff29">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="111" y="0" width="111" height="111" uuid="2406171c-3a33-44b8-8f1b-490971867ccc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="8b2acc05-5fa1-4ac6-a594-80e81a9e03fa">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="222" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="333" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="444" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="0" y="565" width="555" height="111" uuid="5978c447-d554-4749-959a-4e687cc256d3">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="111" height="111" uuid="846cdf0f-2178-4a2c-a500-de1b60e43abc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="d9430c62-79ae-486e-b554-942f2a36ff29">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="111" y="0" width="111" height="111" uuid="2406171c-3a33-44b8-8f1b-490971867ccc"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement x="0" y="0" width="111" height="111" uuid="8b2acc05-5fa1-4ac6-a594-80e81a9e03fa">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="222" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="333" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="444" y="0" width="111" height="111" uuid="600f321a-096c-4165-863a-a2084a910b16"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<componentElement>
+						<reportElement mode="Transparent" x="0" y="0" width="111" height="111" uuid="86e56e18-99c5-478c-bb48-e9d0c9ea271f">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<jr:codeExpression><![CDATA[$P{QrUrldatasource}]]></jr:codeExpression>
+						</jr:QRCode>
+					</componentElement>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="0" y="7" width="269" height="30" uuid="f56d33bb-bec5-4886-85b0-c176ed520876"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{productDatasource}.getProductName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="7" width="275" height="30" uuid="28e4169b-611a-41b3-aad0-494aac3d7264"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{productDatasource}.getId()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
