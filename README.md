@@ -7,6 +7,7 @@
 - [x] Orders
 - [x] Payment via manual,paypal,nganluong
 - [x] Email for orders
+- [x] Integrate Rest API from Sellers
 
 
 ## Installation

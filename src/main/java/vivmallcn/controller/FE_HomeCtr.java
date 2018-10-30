@@ -21,14 +21,14 @@ public class FE_HomeCtr {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	@Value("${product_seller_url}")
-    private String product_seller_url;
+	@Value("${product_list_api}")
+    private String product_list_api;
 	
-	@Value("${image_seller_url}")
-    private String image_seller_url;
+	@Value("${product_image_url}")
+    private String product_image_url;
 	
-	@Value("${link_seller_url}")
-    private String link_seller_url;
+	@Value("${product_detail_link}")
+    private String product_detail_link;
 	
 	@Value("${PRODUCT_IN_INDUSTRY}")
 	private int PRODUCT_IN_INDUSTRY;
@@ -51,13 +51,13 @@ public class FE_HomeCtr {
 		Gson gson = new Gson();
 		RestTemplate restTemplate = new RestTemplate();
 		
-	    String data = restTemplate.getForObject(product_seller_url, String.class);	    
+	    String data = restTemplate.getForObject(product_list_api, String.class);	    
 	    List<Products_Seller> product_sellers = gson.fromJson(data, new TypeToken<List<Products_Seller>>(){}.getType());
 		
 		model.addAttribute("product_sellers",product_sellers);
 		model.addAttribute("industries", industries);
-		model.addAttribute("image_seller_url",image_seller_url);
-		model.addAttribute("link_seller_url",link_seller_url);
+		model.addAttribute("product_image_url",product_image_url);
+		model.addAttribute("product_detail_link",product_detail_link);
 		model.addAttribute("headTitle", "home.title");
 		return "shop/home/index";
 	}

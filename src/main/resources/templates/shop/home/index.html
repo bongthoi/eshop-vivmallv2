@@ -20,12 +20,12 @@
                     <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "10" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" >
                         <li th:each="seller,iterSeller:${product_sellers}" th:if="${iterSeller.count<=10}">
                             <div class="left-block">
-                                <a th:href="${link_seller_url}+${seller.id}" target="_blank">
-                                	<img class="img-responsive image_fixed" alt="" th:src="${image_seller_url}+${seller.image}" />
+                                <a th:href="${product_detail_link}+${seller.id}" target="_blank">
+                                	<img class="img-responsive image_fixed" alt="" th:src="${product_image_url}+${seller.image}" />
                                 </a>
                             </div>
                             <div class="right-block">
-                                <h5 class="product-name"><a th:href="${link_seller_url}+${seller.id}" target="_blank"><span	th:text="${seller.name}">Luxury Perfume</span></a></h5>
+                                <h5 class="product-name"><a th:href="${product_detail_link}+${seller.id}" target="_blank"><span	th:text="${seller.name}">Luxury Perfume</span></a></h5>
                             </div>
                         </li>
                     </ul>
